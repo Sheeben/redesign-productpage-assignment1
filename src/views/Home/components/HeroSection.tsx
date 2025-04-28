@@ -67,13 +67,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
           <div className="flex justify-center">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-teal-500/10 rounded-xl transform rotate-6"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent backdrop-blur-sm rounded-xl transform -rotate-3"></div>
-              <div className="rounded-xl shadow-xl bg-white p-2 max-w-md relative z-10">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/70 to-teal-500/10 rounded-full -top-20 transform rotate-6 w-full h-full"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent  rounded-xl transform -rotate-3"></div>
+              <div className="rounded-full shadow-sm bg-white p-2 max-w-md relative z-10">
                 <img 
                   src="https://img.freepik.com/free-photo/person-using-ar-technology-perform-their-occupation_23-2151137451.jpg" 
                   alt="Health tracking dashboard" 
-                  className="rounded-lg w-full h-auto"
+                  className="rounded-full w-full h-auto"
                   width="600"
                   height="500"
                 />
