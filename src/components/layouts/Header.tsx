@@ -65,15 +65,15 @@ const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center">
             <a 
               href="#" 
-              className="text-blue-600 font-bold text-2xl flex items-center"
+              className="text-purple-600 font-bold text-2xl flex items-center"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection(homeRef);
               }}
             >
-              <span className="text-teal-500">Go</span>
-              <span className="text-blue-600">GetWell</span>
-              <span className="text-teal-500 text-xl">-ai</span>
+              <span className="text-pink-500">Go</span>
+              <span className="text-purple-600">GetWell</span>
+              <span className="text-pink-500 text-xl">-ai</span>
             </a>
           </div>
 
@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({
                 <li key={i}>
                   <a 
                     href={item.href}
-                    className={`text-sm font-medium transition-colors hover:text-blue-600
+                    className={`text-sm font-medium transition-colors hover:text-purple-600
                       ${scrolled ? 'text-gray-700' : 'text-gray-800'}`}
                     onClick={(e) => {
                       e.preventDefault();
@@ -131,7 +131,7 @@ const Header: React.FC<HeaderProps> = ({
                 <li key={i}>
                   <a 
                     href={item.href}
-                    className="block py-2 text-gray-700 hover:text-blue-600"
+                    className="block py-2 text-gray-700 hover:text-purple-600"
                     onClick={(e) => {
                       e.preventDefault();
                       setIsMenuOpen(false);

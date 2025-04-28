@@ -19,10 +19,10 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, toggleOpen 
         onClick={toggleOpen}
         aria-expanded={isOpen}
       >
-        <h3 className="text-lg font-medium text-blue-500">{question}</h3>
+        <h3 className="text-lg font-medium text-purple-500">{question}</h3>
         <span className="ml-6 flex-shrink-0 ">
           {isOpen ? (
-            <ChevronUp className="h-5 w-5 text-blue-600" />
+            <ChevronUp className="h-5 w-5 text-purple-600" />
           ) : (
             <ChevronDown className="h-5 w-5 text-gray-500" />
           )}

@@ -47,8 +47,8 @@ const ContactForm: React.FC = () => {
             
             <div className="space-y-6 mb-8">
               <div className="flex items-start">
-                <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
-                  <Check className="h-5 w-5 text-blue-600" />
+                <div className="flex-shrink-0 p-2 bg-purple-100 rounded-full">
+                  <Check className="h-5 w-5 text-purple-600" />
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-medium text-gray-900">Free Initial Consultation</h3>
@@ -57,8 +57,8 @@ const ContactForm: React.FC = () => {
               </div>
               
               <div className="flex items-start">
-                <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
-                  <Check className="h-5 w-5 text-blue-600" />
+                <div className="flex-shrink-0 p-2 bg-purple-100 rounded-full">
+                  <Check className="h-5 w-5 text-purple-600" />
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-medium text-gray-900">Personalized Onboarding</h3>
@@ -67,8 +67,8 @@ const ContactForm: React.FC = () => {
               </div>
               
               <div className="flex items-start">
-                <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
-                  <Check className="h-5 w-5 text-blue-600" />
+                <div className="flex-shrink-0 p-2 bg-purple-100 rounded-full">
+                  <Check className="h-5 w-5 text-purple-600" />
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-medium text-gray-900">Ongoing Support</h3>
@@ -81,7 +81,7 @@ const ContactForm: React.FC = () => {
           <div className="bg-white rounded-xl shadow-lg p-8">
             {formState.submitted ? (
               <div className="text-center py-8">
-                <div className="inline-flex items-center justify-center p-4 bg-green-100 text-green-600 rounded-full mb-4">
+                <div className="inline-flex items-center justify-center p-4 bg-purple-100 text-purple-600 rounded-full mb-4">
                   <Check className="h-8 w-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Received!</h3>
@@ -109,7 +109,7 @@ const ContactForm: React.FC = () => {
                       name="name"
                       type="text"
                       required
-                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
                       placeholder="John Doe"
                       value={formState.name}
                       onChange={handleChange}
@@ -125,7 +125,7 @@ const ContactForm: React.FC = () => {
                       name="email"
                       type="email"
                       required
-                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
                       placeholder="john@example.com"
                       value={formState.email}
                       onChange={handleChange}
@@ -141,7 +141,7 @@ const ContactForm: React.FC = () => {
                       name="message"
                       rows={4}
                       required
-                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
                       placeholder="How can we help you?"
                       value={formState.message}
                       onChange={handleChange}

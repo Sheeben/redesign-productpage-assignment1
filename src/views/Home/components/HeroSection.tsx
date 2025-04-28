@@ -34,7 +34,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="text-center md:text-left">
             <div className="inline-flex items-center px-4 py-2 mb-6 rounded-full bg-blue-50 border border-blue-100">
-              <span className="text-blue-600 text-sm font-medium"> AI-Powered Healthcare</span>
+              <span className="text-purple-600 text-sm font-medium"> AI-Powered Healthcare</span>
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
               <span className="relative">
@@ -50,7 +50,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               <Button 
                 onClick={() => scrollToSection(contactRef)} 
                 size="lg" 
-                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800"
               >
                 Get Started Free <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -67,7 +67,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
           <div className="flex justify-center">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/70 to-teal-500/10 rounded-full -top-20 transform rotate-6 w-full h-full"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/70 to-teal-500/10 rounded-full -top-20 transform rotate-6 w-full h-full"></div>
               <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent  rounded-xl transform -rotate-3"></div>
               <div className="rounded-full shadow-sm bg-white p-2 max-w-md relative z-10">
                 <img 

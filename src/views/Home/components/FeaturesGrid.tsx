@@ -17,10 +17,10 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => {
   return (
-    <div className="bg-blue-200 bg-gradient-to-r rounded-xl shadow-sm p-6 transition-all duration-300 hover:shadow-md hover:translate-y-[-5px] relative overflow-hidden group">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-teal-50/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <div className="bg-purple-200 bg-gradient-to-r rounded-xl shadow-sm p-6 transition-all duration-300 hover:shadow-md hover:translate-y-[-5px] relative overflow-hidden group">
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-50/50 to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
       <div className="relative z-10">
-        <div className="inline-flex items-center justify-center p-3 mb-4 bg-gradient-to-br from-blue-100 to-blue-50 text-blue-600 rounded-lg group-hover:scale-110 transition-transform">
+        <div className="inline-flex items-center justify-center p-3 mb-4 bg-gradient-to-br from-purple-100 to-purple-50 text-purple-600 rounded-lg group-hover:scale-110 transition-transform">
           {icon}
         </div>
         <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
@@ -66,7 +66,7 @@ const FeaturesGrid: React.FC = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-teal-50"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-white to-purple-50"></div>
       
       {/* Decorative Elements */}
       <div className="absolute inset-0">
