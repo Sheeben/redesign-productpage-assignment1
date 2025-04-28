@@ -1,124 +1,102 @@
-import smallBG from '@/assets/images/main-bg-small.png';
-import { Button } from '@/components/ui';
-import HomeNavbar from '@/components/shared/HomeNav';
-import HcfSignupPopup from '@/components/shared/Popups/HcfSignupPopup';
+import React from 'react';
+import { ArrowRight } from 'lucide-react';
+import Container from '../../../components/ui/Container';
+import Button from '../../../components/ui/Button';
 
 interface HeroSectionProps {
-    scrollToSection: (ref: React.RefObject<HTMLElement>) => void;
-    featuresRef: React.RefObject<HTMLElement>;
-    contactRef: React.RefObject<HTMLElement>;
-    aboutRef: React.RefObject<HTMLElement>;
+  scrollToSection: (ref: React.RefObject<HTMLElement>) => void;
+  featuresRef: React.RefObject<HTMLElement>;
+  contactRef: React.RefObject<HTMLElement>;
+  aboutRef: React.RefObject<HTMLElement>;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({
-    scrollToSection,
-    featuresRef,
-    contactRef,
-    aboutRef,
+const HeroSection: React.FC<HeroSectionProps> = ({ 
+  scrollToSection, 
+  featuresRef, 
+  contactRef 
 }) => {
+  return (
+    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-teal-50">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute w-[500px] h-[500px] -top-32 -right-32 rounded-full bg-gradient-to-br from-blue-100/40 to-teal-100/40 blur-3xl animate-pulse"></div>
+        <div className="absolute w-[300px] h-[300px] top-1/2 -left-32 rounded-full bg-gradient-to-br from-orange-100/30 to-pink-100/30 blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute w-[200px] h-[200px] bottom-0 right-1/4 rounded-full bg-gradient-to-br from-purple-100/20 to-blue-100/20 blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      </div>
 
+      {/* Mesh Grid Background */}
+      <div className="absolute inset-0" style={{
+        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)`,
+        backgroundSize: '40px 40px'
+      }}></div>
 
-    return (
-        <div className="!bg-[#01052f] w-full relative flex flex-col py-2 md:py-5 overflow-hidden">
-            <HomeNavbar
-                scrollToSection={scrollToSection}
-                featuresRef={featuresRef}
-                contactRef={contactRef}
-                aboutRef={aboutRef}
-            />
-
-            <div className='min-h-[90vh] flex items-center'>
-                {/* Background video for larger screens */}
-                {/* <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="hidden md:block absolute top-0 left-0 min-w-full min-h-full object-cover z-[-10]"
-                >
-                    <source src={bgVideo} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video> */}
-
-                {/* Background image for mobile */}
-                <img
-                    src={smallBG}
-                    alt="background_image"
-                    className="md:hidden h-full w-full object-cover absolute top-0 left-0 z-[-10]"
-                />
-
-                {/* Overlay to ensure text readability */}
-                <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-[-5]"></div>
-
-                <div className="relative z-10 text-white w-full flex flex-col lg:flex-row-reverse md:mt-6 lg:mt-0 lg:items-center lg:justify-between px-4 max-w-[1538px] mx-auto">
-                    {/* Video Section */}
-                    <div className="lg:w-5/12 mt-8 lg:mt-0 lg:mb-0 mb-6">
-                        {/* <div className="relative overflow-hidden pt-[56.25%] rounded-lg shadow-lg">
-                            <iframe
-                                src={`https://www.youtube.com/embed/xQl8i2sO_Ls?autoplay=1&mute=${isMuted ? 1 : 0
-                                    }&loop=1&playlist=xQl8i2sO_Ls&controls=0&showinfo=0&rel=0`}
-                                title="Product Demo Video"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className="absolute top-0 left-0 w-full h-full"
-                            ></iframe>
-                            <button
-                                onClick={toggleMute}
-                                className="absolute bottom-4 right-4 bg-black bg-opacity-50 p-2 rounded-full hover:bg-opacity-75 transition-all"
-                            >
-                                {isMuted ? (
-                                    <IoVolumeMuteOutline size={24} />
-                                ) : (
-                                    <IoVolumeHighOutline size={24} />
-                                )}
-                            </button>
-                        </div> */}
-                    </div>
-
-                    {/* Content Section */}
-                    <div className="lg:w-1/2 lg:pr-8">
-                        <h1 className="text-2xl md:text-4xl font-semibold mb-4 capitalize text-white">
-                            <span className="text-primary">AI front office </span> <br />
-                            for healthcare agents
-                        </h1>
-                        <p style={{ lineHeight: '0.7' }} className="text-lg my-8 font-light">
-                            Create <span className="text-primary font-bold">AI Store</span>  in 2 min <br />
-                            <br />
-                            Scale with{' '}
-                            <span className="font-bold text-primary">
-                                Digital Marketing
-                            </span>{' '}
-                        </p>
-                        <div>
-                            <HcfSignupPopup popupButtonStatus buttonChildren={<Button block variant='solid' className='rounded-[5px] max-w-[200px]'>Get Started</Button>} />
-                        </div>
-                        <div className="text-white flex gap-12 mt-8 flex-wrap">
-                            <div>
-                                <h1 className="text-3xl font-bold text-white">
-                                    2100<span className="text-primary ml-1">+</span>
-                                </h1>
-                                <p className="text-lg capitalize">qualified doctors</p>
-                            </div>
-                            <div>
-                                <h1 className="text-3xl font-bold text-white">
-                                    1000<span className="text-primary ml-1">+</span>
-                                </h1>
-                                <p className="text-lg capitalize">hospitals</p>
-                            </div>
-                            <div>
-                                <h1 className="text-3xl font-bold text-white">
-                                    800<span className="text-primary ml-1">+</span>
-                                </h1>
-                                <p className="text-lg capitalize">Treatment Plans</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <Container className="relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="text-center md:text-left">
+            <div className="inline-flex items-center px-4 py-2 mb-6 rounded-full bg-blue-50 border border-blue-100">
+              <span className="text-blue-600 text-sm font-medium"> AI-Powered Healthcare</span>
             </div>
-
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              <span className="relative">
+                <span className="relative z-10">Empowering</span>
+                <div className="absolute bottom-2 left-0 w-full h-3 bg-teal-200/30 -rotate-1"></div>
+              </span>{' '}
+              Your Health Journey with AI
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">
+              Personalized healthcare insights, smart wellness tracking, and AI-powered recommendations to help you live your healthiest life.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+              <Button 
+                onClick={() => scrollToSection(contactRef)} 
+                size="lg" 
+                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+              >
+                Get Started Free <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button 
+                onClick={() => scrollToSection(featuresRef)}
+                variant="outline" 
+                size="lg"
+                className="w-full sm:w-auto border-2"
+              >
+                Discover Features
+              </Button>
+            </div>
+            <p className="text-gray-500 text-sm mt-4">No credit card required • Free 14-day trial</p>
+          </div>
+          <div className="flex justify-center">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-teal-500/10 rounded-xl transform rotate-6"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent backdrop-blur-sm rounded-xl transform -rotate-3"></div>
+              <div className="rounded-xl shadow-xl bg-white p-2 max-w-md relative z-10">
+                <img 
+                  src="https://img.freepik.com/free-photo/person-using-ar-technology-perform-their-occupation_23-2151137451.jpg" 
+                  alt="Health tracking dashboard" 
+                  className="rounded-lg w-full h-auto"
+                  width="600"
+                  height="500"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-    );
+
+        {/* Trust badges with enhanced styling */}
+        <div className="mt-16 border-t border-gray-200/50 pt-8 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
+          <p className="text-center text-gray-500 text-sm mb-4 relative z-10">Trusted by leading healthcare providers</p>
+          <div className="flex flex-wrap justify-center gap-8 items-center opacity-70 relative z-10">
+            <div className="h-8 text-gray-400 font-semibold bg-gradient-to-r from-gray-500 to-gray-400 bg-clip-text text-transparent">HealthPartners</div>
+            <div className="h-8 text-gray-400 font-semibold bg-gradient-to-r from-gray-500 to-gray-400 bg-clip-text text-transparent">MediCare Plus</div>
+            <div className="h-8 text-gray-400 font-semibold bg-gradient-to-r from-gray-500 to-gray-400 bg-clip-text text-transparent">CareAlliance</div>
+            <div className="h-8 text-gray-400 font-semibold bg-gradient-to-r from-gray-500 to-gray-400 bg-clip-text text-transparent">WellTrack</div>
+            <div className="h-8 text-gray-400 font-semibold bg-gradient-to-r from-gray-500 to-gray-400 bg-clip-text text-transparent">FitMed Group</div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
 };
 
 export default HeroSection;

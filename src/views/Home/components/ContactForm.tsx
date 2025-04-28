@@ -1,205 +1,183 @@
-import { Button, Notification, toast } from '@/components/ui';
-import { useState } from 'react';
-import { BiPhone, BiSend, BiUser } from 'react-icons/bi';
-import { BsLinkedin, BsTwitter } from 'react-icons/bs';
-import { CgMail } from 'react-icons/cg';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Send, Check } from 'lucide-react';
+import Container from '../../../components/ui/Container';
+import Button from '../../../components/ui/Button';
 
-const ContactForm = () => {
-    const [formState, setFormState] = useState<{
-        fullname: string;
-        email: string;
-        subject: string;
-        message: string
-    }>({
-        fullname: '',
+const ContactForm: React.FC = () => {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    message: '',
+    submitted: false,
+    loading: false
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState({ ...formState, loading: true });
+    
+    // Simulate form submission
+    setTimeout(() => {
+      setFormState({
+        name: '',
         email: '',
-        subject: '',
-        message: ''
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
+        message: '',
+        submitted: true,
+        loading: false
+      });
+    }, 1500);
+  };
 
-    const [focused, setFocused] = useState('');
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormState({ ...formState, [name]: value });
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            setIsSubmitting(true)
-            // await apiContactUs(formState)
-            setIsSubmitting(false)
-            toast.push(
-                <Notification
-                    title={'Success'}
-                    type={'success'}
-                >
-                    Successfully submitted
-                </Notification>,
-            )
-            setFormState({
-                fullname: '',
-                email: '',
-                subject: '',
-                message: ''
-            })
-        } catch (err) {
-            setIsSubmitting(false)
-            toast.push(
-                <Notification
-                    title={err?.response?.data.message}
-                    type={'danger'}
-                >
-                    {err?.response?.data.message}
-                </Notification>,
-            )
-        }
-    };
-
-    const handleChange = (e) => {
-        setFormState({
-            ...formState,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    return (
-        <div className="bg-white py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    {/* Left Column - Contact Info */}
-                    <div className="space-y-8">
-                        <div>
-                            <h2 className="text-4xl font-bold text-gray-900 mb-4">Let's get in touch!</h2>
-                            <p className="text-gray-600 text-lg">
-                                Got questions about GoGetWell.AI? Our team is here to help. Contact us for quick and friendly support.
-                            </p>
-                        </div>
-
-                        <div className="space-y-6">
-                            {/* Contact Details */}
-                            <div className="flex items-center space-x-4">
-                                <div className="bg-purple-100 p-3 rounded-lg">
-                                    <BiPhone className="w-6 h-6 text-primary" />
-                                </div>
-                                <div>
-                                    <p className="text-gray-600">Phone</p>
-                                    <a href="tel:+919811396858" className="text-gray-900 hover:text-primary transition-colors">
-                                        +91 9811396858
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="flex items-center space-x-4">
-                                <div className="bg-purple-100 p-3 rounded-lg">
-                                    <CgMail className="w-6 h-6 text-primary" />
-                                </div>
-                                <div>
-                                    <p className="text-gray-600">Email</p>
-                                    <a href="mailto:hello@gogetwell.ai" className="text-gray-900 hover:text-primary transition-colors">
-                                        hello@gogetwell.ai
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Social Links */}
-                        <div>
-                            <h3 className="text-xl font-semibold text-gray-900 mb-4">Connect With Us</h3>
-                            <div className="flex space-x-4">
-                                <Link to="https://x.com/gogetwellai" target='_blank' className="bg-purple-100 p-3 rounded-lg hover:bg-purple-200 transition-colors">
-                                    <BsTwitter className="w-6 h-6 text-primary" />
-                                </Link>
-                                <Link to="https://www.linkedin.com/company/gogetwellai/" target='_blank' className="bg-purple-100 p-3 rounded-lg hover:bg-purple-200 transition-colors">
-                                    <BsLinkedin className="w-6 h-6 text-primary" />
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right Column - Contact Form */}
-                    <div className="bg-gray-50 rounded-2xl shadow-lg p-4 sm:p-8">
-                        <form onSubmit={handleSubmit} className="space-y-3">
-                            <div className="relative">
-                                <div className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-300 ${focused === 'fullName' || formState.fullname ? 'text-primary' : 'text-gray-400'
-                                    }`}>
-                                    <BiUser className="w-5 h-5" />
-                                </div>
-                                <input
-                                    type="text"
-                                    name="fullname"
-                                    placeholder="Full Name"
-                                    value={formState.fullname}
-                                    onChange={handleChange}
-                                    onFocus={() => setFocused('fullname')}
-                                    onBlur={() => setFocused('')}
-                                    className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
-                                    required
-                                />
-                            </div>
-
-                            <div className="relative">
-                                <div className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-300 ${focused === 'email' || formState.email ? 'text-primary' : 'text-gray-400'
-                                    }`}>
-                                    <CgMail className="w-5 h-5" />
-                                </div>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    value={formState.email}
-                                    onChange={handleChange}
-                                    onFocus={() => setFocused('email')}
-                                    onBlur={() => setFocused('')}
-                                    className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
-                                    required
-                                />
-                            </div>
-
-                            {/* <div className="relative">
-                                <div className={`absolute left-3 top-1/2 -translate-y-1/2 transition-all duration-300 ${focused === 'subject' || formState.subject ? 'text-primary' : 'text-gray-400'
-                                    }`}>
-                                    <BiMessageSquare className="w-5 h-5" />
-                                </div>
-                                <input
-                                    type="text"
-                                    name="subject"
-                                    placeholder="Subject"
-                                    value={formState.subject}
-                                    onChange={handleChange}
-                                    onFocus={() => setFocused('subject')}
-                                    onBlur={() => setFocused('')}
-                                    className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
-                                    required
-                                />
-                            </div> */}
-
-                            <div className="relative">
-                                <textarea
-                                    name="message"
-                                    placeholder="Message"
-                                    value={formState.message}
-                                    onChange={handleChange}
-                                    onFocus={() => setFocused('message')}
-                                    onBlur={() => setFocused('')}
-                                    rows={4}
-                                    className="w-full p-4 bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
-                                    required
-                                />
-                            </div>
-
-                            <Button
-                                loading={isSubmitting}
-                                type="submit"
-                                className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-transparent transition-colors duration-300 flex items-center justify-center space-x-2 shadow-md hover:shadow-lg"
-                            >
-                                <span>Submit</span>
-                                <BiSend className="w-5 h-5" />
-                            </Button>
-                        </form>
-                    </div>
+  return (
+    <section className="py-20 bg-white" id="contact">
+      <Container>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Start Your Health Journey Today
+            </h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Have questions or ready to get started? Reach out to our team of health experts and AI specialists who are ready to help you achieve your wellness goals.
+            </p>
+            
+            <div className="space-y-6 mb-8">
+              <div className="flex items-start">
+                <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
+                  <Check className="h-5 w-5 text-blue-600" />
                 </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium text-gray-900">Free Initial Consultation</h3>
+                  <p className="text-gray-600">Schedule a no-obligation call with our health experts.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
+                  <Check className="h-5 w-5 text-blue-600" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium text-gray-900">Personalized Onboarding</h3>
+                  <p className="text-gray-600">We'll help you set up your account and integrate your devices.</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start">
+                <div className="flex-shrink-0 p-2 bg-blue-100 rounded-full">
+                  <Check className="h-5 w-5 text-blue-600" />
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium text-gray-900">Ongoing Support</h3>
+                  <p className="text-gray-600">Our customer success team is available to help at every step.</p>
+                </div>
+              </div>
             </div>
+          </div>
+          
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            {formState.submitted ? (
+              <div className="text-center py-8">
+                <div className="inline-flex items-center justify-center p-4 bg-green-100 text-green-600 rounded-full mb-4">
+                  <Check className="h-8 w-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Received!</h3>
+                <p className="text-gray-600 mb-6">
+                  Thank you for reaching out. Our team will get back to you within 24 hours.
+                </p>
+                <Button 
+                  onClick={() => setFormState({ ...formState, submitted: false })}
+                  variant="outline"
+                >
+                  Send Another Message
+                </Button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit}>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Get In Touch</h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                      Your Name
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="John Doe"
+                      value={formState.name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                      Email Address
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="john@example.com"
+                      value={formState.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+                      Your Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      required
+                      className="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="How can we help you?"
+                      value={formState.message}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+                
+                <div className="mt-6">
+                  <Button 
+                    type="submit" 
+                    className="w-full"
+                    size="lg"
+                    disabled={formState.loading}
+                  >
+                    {formState.loading ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : (
+                      <span className="flex items-center justify-center">
+                        Send Message <Send className="ml-2 h-4 w-4" />
+                      </span>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            )}
+          </div>
         </div>
-    );
+      </Container>
+    </section>
+  );
 };
 
 export default ContactForm;

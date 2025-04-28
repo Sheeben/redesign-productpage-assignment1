@@ -1,103 +1,105 @@
 import React from 'react';
-import { BiCreditCard, BiGlobeAlt, BiMessageSquare, BiSearch, BiTrendingUp } from 'react-icons/bi';
-import { BsDatabase } from 'react-icons/bs';
-import { FaUserSecret } from 'react-icons/fa';
-import { FiFileText } from 'react-icons/fi';
-import { LuLanguages } from 'react-icons/lu';
+import { 
+  HeartPulse, 
+  BrainCircuit, 
+  LineChart, 
+  ClipboardList, 
+  Bell, 
+  Smartphone 
+} from 'lucide-react';
+import Container from '../../../components/ui/Container';
 
-const solutions = [
-  {
-    icon: <BiGlobeAlt />,
-    title: "Custom AI-Powered Website",
-    description: "Intelligent, responsive websites tailored to healthcare providers with automated patient interactions.",
-    color: "bg-blue-500"
-  },
-  {
-    icon: <FaUserSecret />,
-    title: "Enhanced Patient Conversion",
-    description: "Smart conversion optimization tools to turn visitors into patients with personalized experiences.",
-    color: "bg-purple-500"
-  },
-  {
-    icon: <BiMessageSquare />,
-    title: "Real-Time Query Handling",
-    description: "Instant response system for patient inquiries with AI-powered chat support.",
-    color: "bg-green-500"
-  },
-  {
-    icon: <FiFileText />,
-    title: "Medical Report Analysis",
-    description: "Advanced AI analysis of medical reports for quick and accurate patient assessments.",
-    color: "bg-orange-500"
-  },
-  {
-    icon: <BiTrendingUp />,
-    title: "Improved Lead Generation",
-    description: "Data-driven lead generation strategies to attract and engage potential patients.",
-    color: "bg-pink-500"
-  },
-  {
-    icon: <BsDatabase />,
-    title: "Comprehensive Healthcare Database",
-    description: "Extensive medical information database for accurate patient guidance and support.",
-    color: "bg-indigo-500"
-  },
-  {
-    icon: <LuLanguages />,
-    title: "Multilingual Support",
-    description: "Breaking language barriers with comprehensive multilingual communication tools.",
-    color: "bg-red-500"
-  },
-  {
-    icon: <BiCreditCard />,
-    title: "Seamless Payment Handling",
-    description: "Secure and efficient payment processing for medical services globally.",
-    color: "bg-teal-500"
-  },
-  {
-    icon: <BiSearch />,
-    title: "Marketing And SEO Support",
-    description: "Optimized digital presence with advanced SEO and marketing strategies.",
-    color: "bg-cyan-500"
-  }
-];
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
 
-const FeaturesGrid: React.FC = () => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => {
   return (
-    <div className="py-16 px-4 md:px-8 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Our Comprehensive Solutions
-          </h2>
-          <div className="h-1 w-24 bg-primary mx-auto rounded-full"></div>
+    <div className="bg-blue-200 bg-gradient-to-r rounded-xl shadow-sm p-6 transition-all duration-300 hover:shadow-md hover:translate-y-[-5px] relative overflow-hidden group">
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-teal-50/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      <div className="relative z-10">
+        <div className="inline-flex items-center justify-center p-3 mb-4 bg-gradient-to-br from-blue-100 to-blue-50 text-blue-600 rounded-lg group-hover:scale-110 transition-transform">
+          {icon}
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {solutions.map((solution, index) => {
-            return (
-              <div
-                key={index}
-                className="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl"
-              >
-                <div className="p-6">
-                  <div className={`${solution.color} inline-flex p-3 rounded-lg text-white mb-4`}>
-                    {solution.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                    {solution.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {solution.description}
-                  </p>
-                </div>
-                <div className={`h-1 w-full absolute bottom-0 ${solution.color} opacity-75`}></div>
-              </div>
-            );
-          })}
-        </div>
+        <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
+        <p className="text-gray-600">{description}</p>
       </div>
     </div>
+  );
+};
+
+const FeaturesGrid: React.FC = () => {
+  const features = [
+    {
+      icon: <HeartPulse className="h-6 w-6" />,
+      title: "Health Monitoring",
+      description: "Track vital signs, activity levels, and sleep patterns with our real-time monitoring system."
+    },
+    {
+      icon: <BrainCircuit className="h-6 w-6" />,
+      title: "AI Health Assistant",
+      description: "Get personalized health insights and recommendations powered by our advanced AI algorithms."
+    },
+    {
+      icon: <LineChart className="h-6 w-6" />,
+      title: "Progress Tracking",
+      description: "Visualize your health journey with intuitive charts and progress indicators."
+    },
+    {
+      icon: <ClipboardList className="h-6 w-6" />,
+      title: "Personalized Plans",
+      description: "Receive customized wellness plans tailored to your specific health goals and needs."
+    },
+    {
+      icon: <Bell className="h-6 w-6" />,
+      title: "Smart Reminders",
+      description: "Never miss medications or appointments with intelligent notification systems."
+    },
+    {
+      icon: <Smartphone className="h-6 w-6" />,
+      title: "Mobile Access",
+      description: "Access your health data anytime, anywhere with our user-friendly mobile application."
+    }
+  ];
+
+  return (
+    <section className="py-20 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-teal-50"></div>
+      
+      {/* Decorative Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-full h-full" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+        <div className="absolute w-[600px] h-[600px] -top-48 -right-48 rounded-full bg-gradient-to-br from-blue-100/20 to-teal-100/20 blur-3xl"></div>
+        <div className="absolute w-[400px] h-[400px] -bottom-32 -left-32 rounded-full bg-gradient-to-br from-purple-100/20 to-pink-100/20 blur-2xl"></div>
+      </div>
+
+      <Container className="relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Comprehensive Health Features
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Our platform provides everything you need to monitor, improve, and maintain your health with cutting-edge AI technology.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <FeatureCard
+              key={index}
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+            />
+          ))}
+        </div>
+      </Container>
+    </section>
   );
 };
 
